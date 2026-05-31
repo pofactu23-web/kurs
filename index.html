@@ -16,7 +16,7 @@
 --r:14px;--rs:9px
 }
 html,body{height:100%;background:#18181B;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif}
-.phone{width:390px;height:844px;background:var(--bg);border-radius:44px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.05)}
+.phone{width:100%;max-width:390px;min-height:100vh;background:var(--bg);border-radius:0;overflow:hidden;display:flex;flex-direction:column} @media(min-width:420px){.phone{border-radius:44px;height:844px;min-height:unset;box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.05)}}
 .scr{display:none;flex-direction:column;height:100%}
 .scr.on{display:flex;animation:fi .2s ease}
 @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
@@ -310,7 +310,26 @@ html,body{height:100%;background:#18181B;display:flex;align-items:center;justify
 .profit-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--b)}
 .profit-row{display:flex;justify-content:space-between;padding:8px 13px;border-bottom:1px solid var(--brd);font-size:13px}
 .profit-total{display:flex;justify-content:space-between;padding:10px 13px;background:var(--gl);font-size:14px;font-weight:900}
+
+  /* Telegram Mini App safe areas */
+  .phone {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  #sa, #sob, #sm, #sc, #sl {
+    padding-top: max(env(safe-area-inset-top, 0px), 0px);
+  }
+  .m-hdr, .ld-hdr, .ch-hdr {
+    padding-top: max(12px, env(safe-area-inset-top, 12px)) !important;
+  }
+
 </style>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+  if (window.Telegram && window.Telegram.WebApp) {
+    window.Telegram.WebApp.ready();
+    window.Telegram.WebApp.expand();
+  }
+</script>
 </head>
 <body>
 <div class="phone">
